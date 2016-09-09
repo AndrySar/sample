@@ -1,5 +1,5 @@
 function request(url, data) {
-	let xhr = new XMLHttpRequest();
+	var xhr = new XMLHttpRequest();
 	
 	xhr.open('POST', url, false);
 	xhr.setRequestHeader('Content-Type', 'application/json');

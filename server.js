@@ -3,14 +3,24 @@ let technologger = require('technologger');
 let parser = require('body-parser');
 let app = express();
 
+let db = {};
+
 app.use('/', express.static('public'));
 
 app.use(parser.json());
 app.use(technologger);
 
 app.post('/users', (req, res) => {
-    console.log(req.body);
-    res.send('100');
+
+    if( db[req.body.email] != undefined ){
+        db[req.body.email] += 1;
+    }else
+    {
+        db[req.body.email] = 0;
+    }
+
+    console.log(db[req.body.email]);
+    res.send(db[req.body.email].toString());
     // TODO: вернуть количество обращений
 });
 
